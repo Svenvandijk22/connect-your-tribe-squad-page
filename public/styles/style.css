@@ -1,1 +1,20 @@
-*{background-color: brown;}
+body{margin: 0;}
+
+header{
+    height: 150px;
+    background-color: #2F2F2F;
+    display: grid;
+ grid-template-columns: 1fr 7fr 1fr ;
+ align-items: center;
+
+    div{grid-column: 2;
+    }
+
+    button{
+        background-color: #2F2F2F;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        border: none;
+        color: white;
+    }
+}
