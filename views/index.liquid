@@ -1,10 +1,44 @@
-{% render 'partials/head.liquid', title: 'Squad page' %}
+{% render 'partials/head.liquid' %}
 
-<h2>Students</h2>
-<ul>
-  {% for person in persons %}
-    <li><a href="/student/{{ person.id }}">{{ person.name }}</a></li>
-  {% endfor %}
-</ul>
+<header>
+<div>
+    <button>Selecteer team</button>
+  </div>
 
-{% render 'partials/foot.liquid', squads: squads %}
+
+</header>
+
+<main>
+
+
+  <div>
+
+
+
+    
+  </div>
+  
+
+  <div>
+    <img src="" alt="speler">
+    <img src="" alt="speler">
+    <img src="" alt="speler">
+  </div>
+
+  <div>
+    <h1>Stats</h1>
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+
+
+  </div>
+
+
+</main>
+
+
+
+
+{% render 'partials/foot.liquid'%}
