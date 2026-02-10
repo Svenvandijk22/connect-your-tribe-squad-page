@@ -8,13 +8,30 @@ header{
  align-items: center;
 
     div{grid-column: 2;
+        display: flex;
+
     }
 
     button{
         background-color: #2F2F2F;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
+        font-size: 30px;
         border: none;
         color: white;
+      
     }
+    img{
+        width: 30px;
+        height: 30px;
+        padding-top: 5px;
+
+    }
+}
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+
+
 }
