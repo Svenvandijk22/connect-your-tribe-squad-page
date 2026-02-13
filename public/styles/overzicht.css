@@ -1,0 +1,99 @@
+body {
+    
+    margin: 0;
+    background-color: #2F2F2F;
+   
+}
+
+@font-face {
+    font-family: 'fifafont';
+    src: url('/fonts/fifawelcome1.3.woff') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+header{
+    margin-top: 100px;
+  
+display: grid;
+grid-template-rows: 1fr 1fr 1fr;
+
+    a{
+    padding-left: 120px;
+    grid-row: 3;
+    text-decoration: none;
+    color: white;
+    font-family:  'fifafont';
+    font-size: 30px;
+  border-color: #2F2F2F;
+}
+
+
+
+
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+
+
+    .spelers-overzicht {
+        margin-left: 6rem;
+
+        list-style-type: none;
+
+
+        img {padding-top: 60px;
+            width: 185px;
+            height: 200px;
+            object-fit: cover;
+         }
+
+        .fifa-kaart {
+            padding-left: 20px;
+            margin-top: 60px;
+            
+            justify-content: center;
+            /* horizontaal centreren */
+            align-items: center;
+
+            background: linear-gradient(to bottom right, #d4af37, #f8e7a0);
+            /* goud look */
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            width: 200px;
+            height: 400px;
+            clip-path: polygon(20% 0%,
+                    /* Linker schuine bovenhoek */
+                    80% 0%,
+                    /* Rechter schuine bovenhoek */
+                    100% 15%,
+                    /* Rechts onder de hoek */
+                    100% 85%,
+                    /* Rechts boven de punt */
+                    50% 100%,
+                    /* Punt onderin */
+                    0% 85%,
+                    /* Links boven de punt */
+                    0% 15%
+                    /* Links onder de hoek */
+                );
+
+
+        }
+
+        p {
+            font-family: 'fifafont', arial;
+            font-size: 35px;
+            color: white;
+        }
+
+    }
+
+
+
+}
