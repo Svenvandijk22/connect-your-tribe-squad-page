@@ -1,0 +1,62 @@
+{% render 'partials/head.liquid' %}
+
+<header>
+<div>
+    <button>Selecteer team<span></button><img src="/assets/pijltje.png" alt="pijltje"></span>
+  </div>
+
+
+</header>
+
+<main>
+  <div>
+</div>
+  
+
+ <div class="voetbal-veld">
+<img class="speler1" src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=" alt="Profile picture">
+<img class="speler2" src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=" alt="Profile picture">
+<img class="speler3" src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=" alt="Profile picture">
+
+<h2>Students</h2>
+<ul>
+  {% for item in persons %}
+    <li>
+      {{ item.name }}
+      <img src="https://fdnd.directus.app/assets/{{ item.mugshot }}" width=100 alt="Profile picture">
+   
+      <div class="stats">
+      <h3>{{ item.name }}</h3>
+      </div>
+  </li>
+  {% endfor %}
+</ul>
+    
+    {% comment %} <img class="speler1" src="/assets/Speler-Sven.png" alt="speler"> {% endcomment %}
+    {% comment %} <img class="speler2" src="/assets/Speler-Sven.png" alt="speler">
+    <img class="speler3" src="/assets/Speler-Sven.png" alt="speler"> {% endcomment %}
+  </div>
+
+
+
+  {% if person.fav_color %}
+    <p><strong>kleur</strong> {{ person.fav_color }}</p>
+  {% else %}
+    <p><strong>kleur</strong> niet ingevuld</p>
+  {% endif %}
+
+  <p><strong>team</strong> test</p>
+</div>
+
+  
+
+
+  </div>
+
+
+</main>
+
+
+
+
+{% render 'partials/foot.liquid'%}

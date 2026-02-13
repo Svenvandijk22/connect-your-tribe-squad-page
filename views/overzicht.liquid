@@ -1,0 +1,36 @@
+
+{% render 'partials/headoverzicht.liquid' %}
+
+<header>
+
+<div class="filters">
+ <a href="/az" >Naam a → z</a>
+ <a href="/za"> Naam z → a</a>
+      </div>
+
+</header>
+<main>
+  
+{% for person in persons %}
+    <li class="spelers-overzicht">
+      {% if person.avatar %}
+        <div class="fifa-kaart">
+            
+          <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
+           <p>{{ person.name }}</p>
+        </div>
+      
+      {% else %}
+      <div class="fifa-kaart"> 
+         
+         <img src="/assets/voorbeeldfoto.png">
+          <p>{{ person.name }}</p>
+         </div>
+      {% endif %}
+
+   
+    </li>
+  {% endfor %}
+</main>
+
+{% render 'partials/foot.liquid' %}
