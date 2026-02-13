@@ -47,18 +47,25 @@ app.set('views', './views')
 app.use(express.urlencoded({extended: true}))
 
 
+
 // Om Views weer te geven, heb je Routes nodig
 // Maak een GET route voor de index
 app.get('/', async function (request, response) {
 
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('index.liquid')
+})
+app.get('/', async function (request, response) {
+ 
   // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
   const params = {
     // Sorteer op naam
-    'sort': 'name',
-
+    // 'sort': 'name',
+ 
     // Geef aan welke data je per persoon wil terugkrijgen
     'fields': '*,squads.*',
-
+ 
     // Combineer meerdere filters
     'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
     // Filter eventueel alleen op een bepaalde squad
@@ -67,6 +74,188 @@ app.get('/', async function (request, response) {
     'filter[squads][squad_id][cohort]': '2526'
   }
   const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+ 
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+ 
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Toon eventueel alle data in de console
+  // console.log(personResponseJSON)
+ 
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('index.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+// Inladen en filteren op 1I
+app.get('/overzicht', async function (request, response) {
+ 
+  // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
+  const params = {
+    // Sorteer op naam    // 'sort': '-name',
+ 
+    // Geef aan welke data je per persoon wil terugkrijgen
+    'fields': '*,squads.*',
+ 
+    // Combineer meerdere filters
+    'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+    // Filter eventueel alleen op een bepaalde squad  
+    // 'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][cohort]': '2526',
+     
+  }
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+ 
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+ 
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Toon eventueel alle data in de console
+  // console.log(personResponseJSON)
+ 
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('overzicht.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+ 
+
+
+// hier is de heilige streep die er voor zorgt dat het gescheiden is van zijn vrouw/man/het/they them
+
+
+app.get('/az', async function (request, response) {
+ 
+  // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
+  const params = {
+    // Sorteer op naam    // 'sort': '-name',
+ 
+    // Geef aan welke data je per persoon wil terugkrijgen
+    'fields': '*,squads.*',
+    'sort': 'name',
+    
+ 
+    // Combineer meerdere filters
+    'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+    // Filter eventueel alleen op een bepaalde squad  
+    // 'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][cohort]': '2526',
+   
+     
+  }
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+ 
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+ 
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Toon eventueel alle data in de console
+  // console.log(personResponseJSON)
+ 
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('overzicht.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+app.get('/za', async function (request, response) {
+ 
+  // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
+  const params = {
+    // Sorteer op naam    // 'sort': '-name',
+ 
+    // Geef aan welke data je per persoon wil terugkrijgen
+    'fields': '*,squads.*',
+    'sort': '-name',
+    
+ 
+    // Combineer meerdere filters
+    'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+    // Filter eventueel alleen op een bepaalde squad  
+    // 'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][cohort]': '2526',
+   
+     
+  }
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+ 
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+ 
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Toon eventueel alle data in de console
+  // console.log(personResponseJSON)
+ 
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('overzicht.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+})
+
+// !!!!! linked naar OVERZICHT pagina !!!!!!!!!!!!!!
+// Om Views weer te geven, heb je Routes nodig
+// Maak een GET route voor de index
+// app.get('/overzicht', async function (request, response) {
+
+//   // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
+//   const params = {
+//     // Sorteer op naam
+//     'sort': 'name',
+
+//     // Geef aan welke data je per persoon wil terugkrijgen
+//     // 'fields': '*,squads.*',
+
+//     // Combineer meerdere filters
+//     // 'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+//     // Filter eventueel alleen op een bepaalde squad
+//     'filter[squads][squad_id][name]': '1I',
+//     // 'filter[squads][squad_id][name]': '1J',
+//     // 'filter[squads][squad_id][cohort]': '2526'
+//   }
+//   // const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+//   // const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter[squads][squad_id][name]=1I')
+//   const personResponse = await fetch('https://fdnd.directus.app/items/person/?')
+
+//   // En haal daarvan de JSON op
+//   const personResponseJSON = await personResponse.json()
+
+//   // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+//   // Toon eventueel alle data in de console
+//   // console.log(personResponseJSON)
+
+//   // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+//   // Geef ook de eerder opgehaalde squad data mee aan de view
+//   response.render('overzicht.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+// })
+
+
+
+
+
+
+// !!!!! linked naar TEAMS pagina !!!!!!!!!!!!!!
+// Om Views weer te geven, heb je Routes nodig
+// Maak een GET route voor de index
+app.get('/teams', async function (request, response) {
+
+  // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
+  const params = {
+    // Sorteer op naam
+    'sort': 'name',
+
+    // Geef aan welke data je per persoon wil terugkrijgen
+    // 'fields': '*,squads.*',
+
+    // Combineer meerdere filters
+    // 'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+    // Filter eventueel alleen op een bepaalde squad
+    'filter[squads][squad_id][name]': '1I',
+    // 'filter[squads][squad_id][name]': '1J',
+    // 'filter[squads][squad_id][cohort]': '2526'
+  }
+  // const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+  // const personResponse = await fetch('https://fdnd.directus.app/items/person/?filter[squads][squad_id][name]=1I')
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?')
 
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
@@ -77,8 +266,10 @@ app.get('/', async function (request, response) {
 
   // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
   // Geef ook de eerder opgehaalde squad data mee aan de view
-  response.render('index.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+  response.render('teams.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
 })
+
+
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 app.post('/', async function (request, response) {
@@ -87,6 +278,34 @@ app.post('/', async function (request, response) {
   response.redirect(303, '/')
 })
 
+
+// Maak een GET route voor een detailpagina met een route parameter, id
+// Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
+app.get('/team/:name', async function (request, response) {
+  // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
+  const params = {
+    // Sorteer op naam
+    'sort': 'name',
+
+    // Geef aan welke data je per persoon wil terugkrijgen
+    'fields': '*,squads.*',
+
+    // Combineer meerdere filters
+    // 'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+    // Filter eventueel alleen op een bepaalde squad
+    'filter[team]': request.params.name,
+    // 'filter[squads][squad_id][name]': '1J',
+    // 'filter[squads][squad_id][cohort]': '2526'
+  }
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+  
+  // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('team.liquid', {persons: personResponseJSON.data})
+})
 
 // Maak een GET route voor een detailpagina met een route parameter, id
 // Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
